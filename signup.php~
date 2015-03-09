@@ -1,0 +1,37 @@
+<?php
+include_once("db.php")
+?>
+
+<?php
+
+	$user = $_POST['n'];
+	$pass = $_POST['p'];
+	$id = $_POST['id'];
+	$emai=$_POST['email'];
+	$address=$_POST['address'];
+	$sql = "INSERT into phplogin values('".$id."','".$user."','".$pass."','".$email."','".$address."')";
+	$query = mysql_query($sql);
+
+	# INSERT into phplogin values(
+	# 1,
+	# 'satish',
+	# 'satish',
+	#'s@.com',
+	#'mumbai');
+
+	if(!$query)
+	{	
+		echo "error";
+		echo "Failed" .mysql_error();
+		echo "<br /><a href ='index.html#section-register'>Sign Up</a>";
+		echo "<br /><a href ='index.html#section-login'>Sign In</a>"; 
+	}
+	else
+	{
+	echo "successfully";
+	echo "<br /><a href ='index.html#section-register'>Sign Up</a>";
+	echo "<br /><a href ='index.html#section-login'>Sign In</a>"; 
+
+	}
+	header('location:index.html');
+?>

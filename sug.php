@@ -1,0 +1,37 @@
+<?php
+
+include_once("db.php")	?>
+session_start();
+<?php
+	$uname = $_POST['name'];
+	$email = $_POST['email'];
+	$sub = $_POST['subject'];
+	$msg = $_POST['message'];	
+
+
+	$sql = "SELECT count(*) FROM phpsug WHERE(
+	username='".$uname."' and email ='".$email."' and subject ='".$sub."' and message ='".$msg."')";
+
+	#SELECT count(*) FROM phplogin WHERE(
+	#username='".$uname."' and password ='".$pass."')";
+
+	$query =mysql_query($sql);
+	
+	$result = mysql_fetch_array($query);
+
+	if($result [0]>0)
+	{
+	echo "successfully Login!";
+	$_SESSION['userName'] = $uname;
+	echo "<br />Wellcome ".$_SESSION['userName']."!";
+	echo "<br /><a href ='index.html#section-register'>Sign Up</a>";
+	echo "<br /><a href ='index.html#section-login'>Sign In</a>";
+	echo "<br /><a href ='logout.php'>Logout</a>"; 
+	}
+	else
+	{
+	echo "Login Failed";
+	echo "<br /><a href ='index.html#section-register'>Sign Up</a>";
+	echo "<br /><a href ='index.html#section-login'>Sign In</a>"; 
+	}
+?>
